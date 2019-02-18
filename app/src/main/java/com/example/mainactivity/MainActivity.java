@@ -1,9 +1,12 @@
 package com.example.mainactivity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridLayout;
 import android.widget.GridView;
 
@@ -12,7 +15,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<Friend> friends = new ArrayList<>();
-
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         GridView gridview = findViewById(R.id.gridview);
         gridview.setAdapter(adapter);
 
+        GridView gv = gridview;
+        gv.setOnItemClickListener(new GridItemClickListener());
 
         int picAdriana = getApplicationContext().getResources().getIdentifier("adriana", "drawable", "MainActivity");
         int picArtie = getApplicationContext().getResources().getIdentifier("artie", "drawable", "MainActivity");
@@ -71,5 +76,18 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private class GridItemClickListener implements AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Log.d(TAG, "onItemClick: Clicked");
+            Friend clickedFriend = (Friend) parent.getItemAtPosition(position);
+            Log.d(TAG, "onItemClick: Clicked " + clickedFriend);
+
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("clicked_friend", clickedFriend);
+            startActivity(intent);
+
+        }
+    }
 
 }
