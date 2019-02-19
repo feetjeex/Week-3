@@ -1,13 +1,10 @@
 package com.example.mainactivity;
 
 import android.content.Intent;
-import android.content.res.Resources;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.GridLayout;
 import android.widget.GridView;
 
 import java.util.ArrayList;
@@ -17,8 +14,6 @@ public class MainActivity extends AppCompatActivity {
 
     // Initialize a new ArrayList called 'friends'
     ArrayList<Friend> friends = new ArrayList<>();
-
-    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         gridview.setAdapter(adapter);
         gridview.setOnItemClickListener(new GridItemClickListener());
 
+
+        // Assigning an integer to each picture of our 'friends'
         int picAdriana = getApplicationContext().getResources().getIdentifier("adriana", "drawable", getPackageName());
         int picArtie = getApplicationContext().getResources().getIdentifier("artie", "drawable", getPackageName());
         int picBenny = getApplicationContext().getResources().getIdentifier("benny", "drawable", getPackageName());
@@ -48,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
         int picTony = getApplicationContext().getResources().getIdentifier("tony", "drawable", getPackageName());
         int picVito = getApplicationContext().getResources().getIdentifier("vito", "drawable", getPackageName());
 
+        // Declaring and assigning our new 'friends' of class Friend
+        // Assigning each 'friend' a name, a bio and an integer which corresponds to their image
         Friend adriana = new Friend("Adriana", "Talks to the feds.", picAdriana);
         Friend artie = new Friend("Artie", "Has his restaurant burned down.", picArtie);
         Friend benny = new Friend("Benny", "Anger management issues.", picBenny);
@@ -63,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         Friend tony = new Friend("Tony", "The boss.", picTony);
         Friend vito = new Friend("Vito", "Has to flee New Jersey.", picVito);
 
+        // Adding all new 'friends' to to the Arraylist
         friends.add(adriana);
         friends.add(artie);
         friends.add(benny);
@@ -80,13 +80,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    // Implements the GridItemClickListener feature
     private class GridItemClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-            Log.d(TAG, "onItemClick: Clicked");
-            Friend clickedFriend = (Friend) parent.getItemAtPosition(position);
-            Log.d(TAG, "onItemClick: Clicked " + clickedFriend);
 
+            Friend clickedFriend = (Friend) parent.getItemAtPosition(position);
+
+            // Using Intents to move from the MainActivity to ProfileActivity
             Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
             intent.putExtra("clicked_friend", clickedFriend);
             startActivity(intent);

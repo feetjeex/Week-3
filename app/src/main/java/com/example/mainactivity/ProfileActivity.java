@@ -4,15 +4,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity {
 
-    private static final String TAG = "ProfileActivity";
     SharedPreferences.Editor editor;
     Friend retrievedFriend;
 
