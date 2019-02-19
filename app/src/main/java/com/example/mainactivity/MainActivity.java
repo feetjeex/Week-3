@@ -12,9 +12,12 @@ import android.widget.GridView;
 
 import java.util.ArrayList;
 
+
 public class MainActivity extends AppCompatActivity {
 
+    // Initialize a new ArrayList called 'friends'
     ArrayList<Friend> friends = new ArrayList<>();
+
     private static final String TAG = "MainActivity";
 
     @Override
@@ -22,27 +25,28 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Initialize a new adapter called 'adapter', using the layout 'grid_item' and the ArrayList
+        // 'friends' as arguments
         FriendsAdapter adapter = new FriendsAdapter(this, R.layout.grid_item, friends);
+
         GridView gridview = findViewById(R.id.gridview);
         gridview.setAdapter(adapter);
+        gridview.setOnItemClickListener(new GridItemClickListener());
 
-        GridView gv = gridview;
-        gv.setOnItemClickListener(new GridItemClickListener());
-
-        int picAdriana = getApplicationContext().getResources().getIdentifier("adriana", "drawable", "MainActivity");
-        int picArtie = getApplicationContext().getResources().getIdentifier("artie", "drawable", "MainActivity");
-        int picBenny = getApplicationContext().getResources().getIdentifier("benny", "drawable", "MainActivity");
-        int picBobby = getApplicationContext().getResources().getIdentifier("bobby", "drawable", "MainActivity");
-        int picChristopher = getApplicationContext().getResources().getIdentifier("christopher", "drawable", "MainActivity");
-        int picJunior = getApplicationContext().getResources().getIdentifier("junior", "drawable", "MainActivity");
-        int picMeadow = getApplicationContext().getResources().getIdentifier("meadow", "drawable", "MainActivity");
-        int picMelfie = getApplicationContext().getResources().getIdentifier("melfie", "drawable", "MainActivity");
-        int picPauli = getApplicationContext().getResources().getIdentifier("pauli", "drawable", "MainActivity");
-        int picPhil = getApplicationContext().getResources().getIdentifier("phil", "drawable", "MainActivity");
-        int picRalphie = getApplicationContext().getResources().getIdentifier("ralphie", "drawable", "MainActivity");
-        int picSilvio = getApplicationContext().getResources().getIdentifier("silvio", "drawable", "MainActivity");
-        int picTony = getApplicationContext().getResources().getIdentifier("tony", "drawable", "MainActivity");
-        int picVito = getApplicationContext().getResources().getIdentifier("vito", "drawable", "MainActivity");
+        int picAdriana = getApplicationContext().getResources().getIdentifier("adriana", "drawable", getPackageName());
+        int picArtie = getApplicationContext().getResources().getIdentifier("artie", "drawable", getPackageName());
+        int picBenny = getApplicationContext().getResources().getIdentifier("benny", "drawable", getPackageName());
+        int picBobby = getApplicationContext().getResources().getIdentifier("bobby", "drawable", getPackageName());
+        int picChristopher = getApplicationContext().getResources().getIdentifier("christopher", "drawable", getPackageName());
+        int picJunior = getApplicationContext().getResources().getIdentifier("junior", "drawable", getPackageName());
+        int picMeadow = getApplicationContext().getResources().getIdentifier("meadow", "drawable", getPackageName());
+        int picMelfie = getApplicationContext().getResources().getIdentifier("melfie", "drawable", getPackageName());
+        int picPauli = getApplicationContext().getResources().getIdentifier("pauli", "drawable", getPackageName());
+        int picPhil = getApplicationContext().getResources().getIdentifier("phil", "drawable", getPackageName());
+        int picRalphie = getApplicationContext().getResources().getIdentifier("ralphie", "drawable", getPackageName());
+        int picSilvio = getApplicationContext().getResources().getIdentifier("silvio", "drawable", getPackageName());
+        int picTony = getApplicationContext().getResources().getIdentifier("tony", "drawable", getPackageName());
+        int picVito = getApplicationContext().getResources().getIdentifier("vito", "drawable", getPackageName());
 
         Friend adriana = new Friend("Adriana", "Talks to the feds.", picAdriana);
         Friend artie = new Friend("Artie", "Has his restaurant burned down.", picArtie);

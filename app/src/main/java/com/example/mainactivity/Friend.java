@@ -2,6 +2,8 @@ package com.example.mainactivity;
 
 import java.io.Serializable;
 
+
+// Implements the Friend class
 public class Friend implements Serializable {
     private String name, bio;
     private int drawableId;
